@@ -2,12 +2,12 @@
     font-weight: bold;
 }
 
-.filter{
+.descriptor{
     display: flex;
 }
 
-.filter div{
-    padding: 0px 2px 0px 2px;
+.descriptor button{
+    margin: 0px 6px 0px 6px;
 }
 
 .logo{
