@@ -8,8 +8,10 @@ function Table(){
                 <tr>
                     <td>First Name</td>
                     <td>Last Name</td>
-                    <td></td>
-                    <td></td>
+                    <td>UID</td>
+                    <td>Gender</td>
+                    <td>E-mail</td>
+                    <td>Age</td>
                 </tr>
             </thead>
         </table>
