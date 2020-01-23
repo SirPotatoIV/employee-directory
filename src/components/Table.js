@@ -1,5 +1,7 @@
 import React from 'react';
+import TableRow from "./TableRow"
 import "./Table.css"
+
 
 function Table(){
     return(
@@ -14,6 +16,11 @@ function Table(){
                     <td>Age</td>
                 </tr>
             </thead>
+            <tbody>
+                <TableRow />
+                <TableRow />
+                <TableRow />
+            </tbody>
         </table>
     )
 }
