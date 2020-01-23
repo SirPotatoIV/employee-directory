@@ -1,0 +1,24 @@
+.bold{
+    font-weight: bold;
+}
+
+.filter{
+    display: flex;
+}
+
+.filter div{
+    padding: 0px 2px 0px 2px;
+}
+
+.logo{
+    font-size: 24px;
+}
+
+.navbar{
+    display: flex;
+    background-color: blue;
+    color: white;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 5px 10px 5px;
+}
