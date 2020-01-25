@@ -4,9 +4,21 @@ import "./Table.css"
 
 //Check out 20-State/03-Stu_useState
 function Table(){
-    // const [url, setUrl] = useState("");
-    const employees =useGet("https://randomuser.me/api/?results=5");
-    console.log(employees)
+    const employees =useGet("https://randomuser.me/api/?results=25");
+    const employeeRows = employees.map(employee => 
+            {
+                return(
+                    <tr key={employee.login.uuid}>
+                        <td>{employee.name.first}</td>
+                        <td>{employee.name.last}</td>
+                        <td>{employee.login.uuid}</td>
+                        <td>{employee.gender}</td>
+                        <td>{employee.email}</td>
+                        <td>{employee.dob.age}</td>
+                    </tr>
+                ) 
+            }
+        )
     
     return(
         <table>
@@ -21,14 +33,7 @@ function Table(){
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Jake</td>
-                    <td>O'Toole</td>
-                    <td>90104391</td>
-                    <td>Male</td>
-                    <td>otoolej33@gmail.com</td>
-                    <td>06/30/1990</td>
-                </tr>
+                {employeeRows}
             </tbody>
         </table>
     )
