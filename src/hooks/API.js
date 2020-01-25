@@ -13,25 +13,28 @@ export function useGet(url, sort){
         async function getEmployees(){
             try {
                 const response = await axios.get(url)
-                switch(sort){
-                    case "":
-                        setEmployees(response.data.results)
-                        break
-                    case "name":
-                        sortByName(response.data.results)
-                        break
-                    case "age":
-                        sortByAge(response.data.results)
-                        break
-                    default:
-                        throw new Error("sort does not match any cases")
-                }
-            } catch (error) {
-                console.log("error ocurred getting info from the API: ", error)
+                setEmployees(response.data.results)
             }
+            catch (error) {
+                console.log("error ocurred getting info from the API: ", error)
+            }   
         }
         getEmployees()
-    }, [url, sort])
+    }, [url])
+
+    useEffect(()=>{
+        console.log(sort)
+        switch(sort){
+            case "name":
+                sortByName()
+                break
+            case "age":
+                sortByAge()
+                break
+            default:
+                console.log("sort does not match any cases")
+        }
+    }, [sort])
 
     function sortByName(employees){
         let sortedEmployees = employees;

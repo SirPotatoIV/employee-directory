@@ -1,11 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useGet } from "../hooks/API.js"
 import "./Table.css"
+import Button from "./Button.js"
 
 //Check out 20-State/03-Stu_useState
 function Table(){
+    const [url, setUrl] = useState("https://randomuser.me/api/?results=5")
+    const [sort, setSort] = useState(null)
     // https://randomuser.me/documentation#howto
-    const employees = useGet("https://randomuser.me/api/?results=5", "age");
+    const employees = useGet(url, sort);
     const employeeRows = employees.map(employee => 
             {
                 return(
@@ -21,11 +24,15 @@ function Table(){
             }
         )
     
+    function nameSort(){
+        setSort("name")
+    }
+
     return(
         <table>
             <thead>
                 <tr>
-                    <td>First Name</td>
+                    <td onClick={nameSort}><Button>First Name</Button></td>
                     <td>Last Name</td>
                     <td>UID</td>
                     <td>Gender</td>

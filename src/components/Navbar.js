@@ -7,11 +7,11 @@ function Navbar(){
     return(
         <div className="navbar">
             <div className="logo bold">Employee Directory</div>
-            <div className="descriptor">
+            {/* <div className="descriptor">
                 <div className="bold">Sort Options: </div>
                 <Button>Name</Button>
                 <Button>Age</Button>
-            </div>
+            </div> */}
             <div className="descriptor">
                 <div className="bold">Employee Search: </div>
                 <Search />
