@@ -1,8 +1,13 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import { useGet } from "../hooks/API.js"
 import "./Table.css"
 
+//Check out 20-State/03-Stu_useState
 function Table(){
-
+    // const [url, setUrl] = useState("");
+    const employees =useGet("https://randomuser.me/api/?results=5");
+    console.log(employees)
+    
     return(
         <table>
             <thead>
