@@ -10,7 +10,6 @@ function Navbar(){
             <div className="descriptor">
                 <div className="bold">Sort Options: </div>
                 <Button>Name</Button>
-                <Button>UID</Button>
                 <Button>Age</Button>
             </div>
             <div className="descriptor">

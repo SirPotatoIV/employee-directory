@@ -5,7 +5,7 @@ import "./Table.css"
 //Check out 20-State/03-Stu_useState
 function Table(){
     // https://randomuser.me/documentation#howto
-    const employees = useGet("https://randomuser.me/api/?results=5", "");
+    const employees = useGet("https://randomuser.me/api/?results=5", "age");
     const employeeRows = employees.map(employee => 
             {
                 return(

@@ -13,13 +13,19 @@ export function useGet(url, sort){
         async function getEmployees(){
             try {
                 const response = await axios.get(url)
-                if(sort === ""){
-                    setEmployees(response.data.results)
-                    sortEmployees(response.data.results)
+                switch(sort){
+                    case "":
+                        setEmployees(response.data.results)
+                        break
+                    case "name":
+                        sortByName(response.data.results)
+                        break
+                    case "age":
+                        sortByAge(response.data.results)
+                        break
+                    default:
+                        throw new Error("sort does not match any cases")
                 }
-                // if(sort === "yes"){
-                //     sortEmployees()
-                // }
             } catch (error) {
                 console.log("error ocurred getting info from the API: ", error)
             }
@@ -27,7 +33,7 @@ export function useGet(url, sort){
         getEmployees()
     }, [url])
 
-    function sortEmployees(employees){
+    function sortByName(employees){
         let sortedEmployees = employees;
 
         sortedEmployees.sort(function(a,b){
@@ -37,10 +43,17 @@ export function useGet(url, sort){
                 return 1;
             }
         })
-        
-        console.log("array sorted: ", sortedEmployees)
+        setEmployees(sortedEmployees)
     }
 
+    function sortByAge(employees){
+        let sortedEmployees = employees;
+
+        sortedEmployees.sort(function(a,b){
+            return (a.dob.age - b.dob.age)
+        })
+        setEmployees(sortedEmployees)
+    }
 
     return employees
 }
