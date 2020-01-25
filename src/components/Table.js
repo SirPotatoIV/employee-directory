@@ -4,7 +4,8 @@ import "./Table.css"
 
 //Check out 20-State/03-Stu_useState
 function Table(){
-    const employees =useGet("https://randomuser.me/api/?results=25");
+    // https://randomuser.me/documentation#howto
+    const employees = useGet("https://randomuser.me/api/?results=5", "");
     const employeeRows = employees.map(employee => 
             {
                 return(
