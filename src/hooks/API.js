@@ -42,7 +42,7 @@ export function useGet(url){
 
     function sortByName(){
         console.log(`1.${employees[0].name.first} 2.${employees[1].name.first}`)
-        employees.sort(function(a,b){
+         employees.sort(function(a,b){
             if(a.name.first < b.name.first){
                 return -1;
             }else{
@@ -50,7 +50,7 @@ export function useGet(url){
             }
         })
         console.log(`1.${employees[0].name.first} 2.${employees[1].name.first}`)
-        setEmployees(employees)
+        setEmployees([...employees])
     }
 
     function sortByAge(employees){
