@@ -2,8 +2,9 @@ import {useState, useEffect} from 'react';
 import axios from "axios"
 
 // Check out 20-State/03-Ins_useEffect
-export function useGet(url, sort){
+export function useGet(url){
     const [employees, setEmployees] = useState([])
+    const [sort, setSort] = useState("")
     
     // help writing custom hooks and specifically ones that are async
     // -- https://dev.to/vinodchauhan7/react-hooks-with-async-await-1n9g
@@ -20,10 +21,9 @@ export function useGet(url, sort){
             }   
         }
         getEmployees()
-    }, [url])
+    },[url])
 
     useEffect(()=>{
-        console.log(sort)
         switch(sort){
             case "name":
                 sortByName()
@@ -36,27 +36,29 @@ export function useGet(url, sort){
         }
     }, [sort])
 
-    function sortByName(employees){
-        let sortedEmployees = employees;
+    function sortFunc(sort){
+        setSort(sort);
+    }
 
-        sortedEmployees.sort(function(a,b){
+    function sortByName(){
+        console.log(`1.${employees[0].name.first} 2.${employees[1].name.first}`)
+        employees.sort(function(a,b){
             if(a.name.first < b.name.first){
                 return -1;
             }else{
                 return 1;
             }
         })
-        setEmployees(sortedEmployees)
+        console.log(`1.${employees[0].name.first} 2.${employees[1].name.first}`)
+        setEmployees(employees)
     }
 
     function sortByAge(employees){
-        let sortedEmployees = employees;
-
-        sortedEmployees.sort(function(a,b){
+        employees.sort(function(a,b){
             return (a.dob.age - b.dob.age)
         })
-        setEmployees(sortedEmployees)
+        setEmployees(employees)
     }
 
-    return employees
+    return {employees, sortFunc}
 }
