@@ -50,14 +50,15 @@ export function useGet(url){
             }
         })
         console.log(`1.${employees[0].name.first} 2.${employees[1].name.first}`)
+        // You have to spread, because this creates a new variable, instead of just updating the variable. React will not recognize it as an update if you just update the variable.
         setEmployees([...employees])
     }
 
-    function sortByAge(employees){
+    function sortByAge(){
         employees.sort(function(a,b){
             return (a.dob.age - b.dob.age)
         })
-        setEmployees(employees)
+        setEmployees([...employees])
     }
 
     return {employees, sortFunc}

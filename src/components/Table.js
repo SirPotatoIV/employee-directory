@@ -6,7 +6,7 @@ import Button from "./Button.js"
 //Check out 20-State/03-Stu_useState
 function Table() {
     // https://randomuser.me/documentation#howto
-    const [url, setUrl] = useState("https://randomuser.me/api/?results=2")
+    const [url, setUrl] = useState("https://randomuser.me/api/?results=10")
     // const [sort, setSort] = useState(null)
     const { employees, sortFunc } = useGet(url);
 
@@ -21,7 +21,7 @@ function Table() {
                     <td>UID</td>
                     <td>Gender</td>
                     <td>E-mail</td>
-                    <td>Age</td>
+                    <td onClick={() => sortFunc("age")}><Button>Age</Button></td>
                 </tr>
             </thead>
             <tbody>
