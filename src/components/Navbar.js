@@ -1,5 +1,4 @@
 import React from 'react';
-// import Button from "./Button.js"
 import Search from "./Search.js"
 import "./Navbar.css"
 

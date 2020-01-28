@@ -4,10 +4,10 @@ import "./Search.css"
 
 function Search(){
     const [search, setSearch] = useState("")
-    const {employees, setEmployees} = useContext(EmployeeContext)
+    const {employees, setEmployees, displayEmployees, setDisplayedEmployees} = useContext(EmployeeContext)
     
     function updateSearch({target}){
-
+        
         const searchTerm = target.value
         setSearch(searchTerm)
         const filterResult = employees.filter(function(employee){
@@ -16,7 +16,7 @@ function Search(){
             // ... if not it is removed from the list.
             return employee.name.first.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1 ? true : false
         })
-        setEmployees([...filterResult])
+        setDisplayedEmployees([...filterResult])
     }
 
     return(
