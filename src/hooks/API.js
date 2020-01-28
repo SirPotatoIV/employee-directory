@@ -4,9 +4,8 @@ import axios from "axios"
 
 // Check out 20-State/03-Ins_useEffect
 export function useGet(url){
-    const{employees, setEmployees} = useContext(EmployeeContext)
-    const [sort, setSort] = useState("")
-    console.log(setEmployees)
+    const{employees, setEmployees, displayedEmployees, setDisplayedEmployees} = useContext(EmployeeContext)
+
     // help writing custom hooks and specifically ones that are async
     // -- https://dev.to/vinodchauhan7/react-hooks-with-async-await-1n9g
     // -- https://reactjs.org/docs/hooks-custom.html
@@ -15,17 +14,18 @@ export function useGet(url){
         async function getEmployees(){
             try {
                 const response = await axios.get(url)
-                // console.log(response.data.results)
+             
                 setEmployees(response.data.results)
+                setDisplayedEmployees(response.data.results)
             }
             catch (error) {
                 console.log("error ocurred getting info from the API: ", error)
             }   
         }
         getEmployees()
-    },[url])
+    },[])
 
-    useEffect(()=>{
+    function sortFunc(sort){
         switch(sort){
             case "name":
                 sortByName()
@@ -36,10 +36,6 @@ export function useGet(url){
             default:
                 console.log("sort does not match any cases")
         }
-    }, [sort])
-
-    function sortFunc(sort){
-        setSort(sort);
     }
 
     function sortByName(){
@@ -51,15 +47,15 @@ export function useGet(url){
             }
         })
         // You have to spread, because this creates a new variable, instead of just updating the variable. React will not recognize it as an update if you just update the variable.
-        setEmployees([...employees])
+        setDisplayedEmployees([...employees])
     }
 
     function sortByAge(){
         employees.sort(function(a,b){
             return (a.dob.age - b.dob.age)
         })
-        setEmployees([...employees])
+        setDisplayedEmployees([...employees])
     }
 
-    return {employees, sortFunc}
+    return {displayedEmployees, sortFunc}
 }

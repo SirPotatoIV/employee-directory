@@ -9,10 +9,12 @@ import { EmployeeContext } from "./components/EmployeeContext"
 
 function App() {
   const [employees, setEmployees] = useState([]);
+  const [displayedEmployees, setDisplayedEmployees] = useState([])
+
   console.log(employees)
   return (
     <div className="App">
-      <EmployeeContext.Provider value={{employees, setEmployees}}>
+      <EmployeeContext.Provider value={{employees, setEmployees, displayedEmployees, setDisplayedEmployees}}>
         <Navbar />
         <Table />
       </EmployeeContext.Provider>

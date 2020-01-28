@@ -4,16 +4,10 @@ import "./Search.css"
 
 function Search(){
     const [search, setSearch] = useState("")
-    // const [allEmployees, setAllEmployees] = useState([]);
     const {employees, setEmployees} = useContext(EmployeeContext)
-    // let allEmployees = [];
     
     function updateSearch({target}){
-        
-            // if(allEmployees != ){
-            //     allEmployees = employees
-            // }
-        
+
         const searchTerm = target.value
         setSearch(searchTerm)
         const filterResult = employees.filter(function(employee){

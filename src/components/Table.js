@@ -8,9 +8,8 @@ import { EmployeeContext } from './EmployeeContext.js';
 function Table() {
     // https://randomuser.me/documentation#howto
     const [url, setUrl] = useState("https://randomuser.me/api/?results=10")
-    // const [employees, setEmployees] = useContext(EmployeeContext)
-    const { employees, sortFunc } = useGet(url);
-    console.log(employees)
+    const { sortFunc } = useGet(url);
+    const { employees, setEmployees, displayedEmployees, setDisplayedEmployees } = useContext(EmployeeContext)
 
     return (
         <table>
@@ -25,7 +24,7 @@ function Table() {
                 </tr>
             </thead>
             <tbody>
-                {employees.map(employee => {
+                {displayedEmployees.map(employee => {
                     return (
                         <tr key={employee.login.uuid}>
                             <td>{employee.name.first}</td>
