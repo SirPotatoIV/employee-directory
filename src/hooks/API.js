@@ -1,11 +1,12 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useContext} from 'react';
+import {EmployeeContext} from "../components/EmployeeContext"
 import axios from "axios"
 
 // Check out 20-State/03-Ins_useEffect
 export function useGet(url){
-    const [employees, setEmployees] = useState([])
+    const{employees, setEmployees} = useContext(EmployeeContext)
     const [sort, setSort] = useState("")
-    
+    console.log(setEmployees)
     // help writing custom hooks and specifically ones that are async
     // -- https://dev.to/vinodchauhan7/react-hooks-with-async-await-1n9g
     // -- https://reactjs.org/docs/hooks-custom.html
@@ -14,6 +15,7 @@ export function useGet(url){
         async function getEmployees(){
             try {
                 const response = await axios.get(url)
+                // console.log(response.data.results)
                 setEmployees(response.data.results)
             }
             catch (error) {
@@ -41,7 +43,6 @@ export function useGet(url){
     }
 
     function sortByName(){
-        console.log(`1.${employees[0].name.first} 2.${employees[1].name.first}`)
          employees.sort(function(a,b){
             if(a.name.first < b.name.first){
                 return -1;
@@ -49,7 +50,6 @@ export function useGet(url){
                 return 1;
             }
         })
-        console.log(`1.${employees[0].name.first} 2.${employees[1].name.first}`)
         // You have to spread, because this creates a new variable, instead of just updating the variable. React will not recognize it as an update if you just update the variable.
         setEmployees([...employees])
     }

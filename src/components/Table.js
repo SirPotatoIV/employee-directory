@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useGet } from "../hooks/API.js"
 import "./Table.css"
 import Button from "./Button.js"
+import { EmployeeContext } from './EmployeeContext.js';
 
 //Check out 20-State/03-Stu_useState
 function Table() {
     // https://randomuser.me/documentation#howto
     const [url, setUrl] = useState("https://randomuser.me/api/?results=10")
-    // const [sort, setSort] = useState(null)
+    // const [employees, setEmployees] = useContext(EmployeeContext)
     const { employees, sortFunc } = useGet(url);
+    console.log(employees)
 
-
-    console.log("*@#&^$*#@&^$#@", employees)
     return (
         <table>
             <thead>
@@ -26,7 +26,6 @@ function Table() {
             </thead>
             <tbody>
                 {employees.map(employee => {
-                    console.log("hello", employee.name.first)
                     return (
                         <tr key={employee.login.uuid}>
                             <td>{employee.name.first}</td>
