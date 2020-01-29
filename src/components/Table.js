@@ -7,9 +7,12 @@ import { EmployeeContext } from './EmployeeContext.js';
 //Check out 20-State/03-Stu_useState
 function Table() {
     // https://randomuser.me/documentation#howto
-    const [url, setUrl] = useState("https://randomuser.me/api/?results=10")
+    // exists in case I ever built functionality in to change the url, which would get a new set of employees. Currently not being used other than to store the url.
+    const [url] = useState("https://randomuser.me/api/?results=10")
+    // custom hook used for getting the employees from the api and storing the sort functions
     const { sortFunc } = useGet(url);
-    const { employees, setEmployees, displayedEmployees, setDisplayedEmployees } = useContext(EmployeeContext)
+    // contains the employees to display in the table
+    const { displayedEmployees} = useContext(EmployeeContext)
 
     return (
         <table>
